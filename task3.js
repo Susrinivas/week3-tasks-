@@ -1,5 +1,15 @@
-//Sum of all numbers in an array
+var request = new XMLHttpRequest()
 
-let numarr = [2, 4,77,89,23,45];
+request.open('Get','https://restcountries.eu/rest/v2/all',true);
 
-console.log(numarr.reduce((result, item) => result + item, 0));
+request.send();
+
+request.onload = function(){
+    var countrydata = JSON.parse(this.response);
+    countrydata.forEach((item) => {
+        console.log(item.name);
+        console.log(item.capital);
+        console.log(item.flag);
+    })
+    //console.log(countrydata);
+}

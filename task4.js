@@ -1,12 +1,9 @@
-//Return all the prime numbers in an array 
-
-let num = [2,4,1,3,5,9,34,53];
-
-console.log(num.filter(item => {
-    for(var i = 2; i < item; i++){
-        if(item%i == 0){
-            break;
-        }
-        return item;
-    }
-}))
+var request = new XMLHttpRequest();
+request.open('Get','https://restcountries.eu/rest/v2/all');
+request.send();
+request.onload = function(){
+    var countrydata = JSON.parse(this.response);
+    
+    let result = countrydata.reduce((result,item) => result+item.population, 0);
+    console.log(result.toLocaleString());
+}

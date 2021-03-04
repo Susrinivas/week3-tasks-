@@ -1,30 +1,10 @@
-// Return all the palindromes in an array 
-let numarr = [123,121,242,247,'mom'];
-
-console.log(numarr.filter(item => {
-
-    it = item.toString();
-    for(var i = 0; i < it.length/2 ; i++){
-
-        if(it[i] !== it[it.length-i-1]){
-             break;
-        }
-        return item;
-    }
-}));
-
-// let arr = ['vasu','mam','mom','bixib'];
-
-// console.log(arr.filter(item => {
-//     if(item.split('').reverse().join('') === item){
-//         return item;
-//     }
-// }));
-
-
-
-// using recursion
-// function reverseString(str) {
-//     return (str === '') ? '' : reverseString(str.substr(1)) + str.charAt(0);
-//   }
-//   reverseString("hello");
+//Print the country which uses US Dollars as currency
+var request = new XMLHttpRequest()
+request.open('Get','https://restcountries.eu/rest/v2/all',true);
+request.send();
+request.onload = function(){
+    var countrydata = JSON.parse(this.response);
+ console.log(countrydata);
+    var countryname = countrydata.filter(item =>  item.currencies[0].name == ('United State Dollar')  || item.currencies[0].name == 'United States dollar' ).map(item => item.name);
+    console.log(countryname);
+}
